@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como Treinar seu Dragão - Para Minha Amor ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1e3a5f;
+            --secondary-color: #ff6b35;
+            --accent-color: #ffd700;
+            --text-light: #f0f0f0;
+            --bg-gradient-start: #0f2027;
+            --bg-gradient-mid: #203a43;
+            --bg-gradient-end: #2c5364;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-mid), var(--bg-gradient-end));
+            min-height: 100vh;
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Partículas animadas de fundo */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 3rem 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .title-container {
+            display: inline-block;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            margin-bottom: 0.5rem;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: brightness(1);
+            }
+            to {
+                filter: brightness(1.2);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .dragon-icon {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            animation: fly 3s ease-in-out infinite;
+            display: inline-block;
+            margin: 0 1rem;
+        }
+
+        @keyframes fly {
+            0%, 100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Mensagem especial */
+        .love-message {
+            background: rgba(255, 107, 53, 0.1);
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .love-message h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .love-message p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        /* Seção dos filmes */
+        .movies-section {
+            margin: 4rem 0;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+        }
+
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .movie-card {
+            background: rgba(30, 58, 95, 0.4);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .movie-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .movie-card:hover::before {
+            opacity: 1;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+            border-color: var(--secondary-color);
+        }
+
+        .movie-number {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 3rem;
+            font-weight: bold;
+            color: rgba(255, 215, 0, 0.2);
+            font-family: 'Cinzel', serif;
+        }
+
+        .movie-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .movie-year {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .movie-description {
+            line-height: 1.6;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .movie-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .btn-watch {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+        }
+
+        .btn-watch:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .btn-download {
+            background: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn-download:hover {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        /* Modal de informações */
+        .info-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .info-modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .info-modal-content {
+            background: linear-gradient(135deg, var(--bg-gradient-mid), var(--bg-gradient-end));
+            border: 2px solid var(--accent-color);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: slideIn 0.3s ease;
+            text-align: center;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .info-modal-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .info-modal-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-info-btn {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-info-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            margin-top: 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .heart {
+            color: var(--secondary-color);
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .movies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .movie-card {
+                padding: 1rem;
+            }
+
+            .btn {
+                font-size: 0.9rem;
+                padding: 0.6rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Partículas animadas -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="title-container">
+            <span class="dragon-icon">🐉</span>
+            <h1>Como Treinar seu Dragão</h1>
+            <span class="dragon-icon">🐲</span>
+        </div>
+        <p class="subtitle">Uma aventura mágica compartilhada com você, meu amor</p>
+    </header>
+
+    <!-- Container principal -->
+    <div class="container">
+        <!-- Mensagem especial -->
+        <section class="love-message">
+            <h2>Para a pessoa mais especial do meu mundo</h2>
+            <p>
+                Assim como Soluço e Banguela, nossa jornada é cheia de aventuras, descobertas e um amor que 
+                voa mais alto que qualquer dragão. Cada filme que assistirmos juntos será mais um capítulo 
+                na nossa própria história épica. ❤️
+            </p>
+        </section>
+
+        <!-- Seção dos filmes -->
+        <section class="movies-section">
+            <h2 class="section-title">Nossa Saga Dragônica</h2>
+            
+            <div class="movies-grid" id="moviesGrid">
+                <!-- Filme 1 -->
+                <div class="movie-card" data-movie="1">
+                    <span class="movie-number">1</span>
+                    <h3 class="movie-title">Como Treinar seu Dragão</h3>
+                    <p class="movie-year">2010</p>
+                    <p class="movie-description">
+                        O início de tudo! Onde um jovem viking e um dragão incomum provam que a amizade 
+                        pode mudar o mundo. O primeiro capítulo da nossa aventura.
+                    </p>
+                    <div class="movie-actions">
+                        <button class="btn btn-watch" onclick="watchMovie(1)">
+                            <i class="fas fa-play"></i> Assistir
+                        </button>
+                        <button class="btn btn-download" onclick="downloadMovie(1)">
+                            <i class="fas fa-download"></i> Baixar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filme 2 -->
+                <div class="movie-card" data-movie="2">
+                    <span class="movie-number">2</span>
+                    <h3 class="movie-title">Como Treinar seu Dragão 2</h3>
+                    <p class="movie-year">2014</p>
+                    <p class="movie-description">
+                        Novos mundos, novos desafios e um amor que só cresce! A continuação da nossa 
+                        jornada épica juntos.
+                    </p>
+                    <div class="movie-actions">
+                        <button class="btn btn-watch" onclick="watchMovie(2)">
+                            <i class="fas fa-play"></i> Assistir
+                        </button>
+                        <button class="btn btn-download" onclick="downloadMovie(2)">
+                            <i class="fas fa-download"></i> Baixar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filme 3 -->
+                <div class="movie-card" data-movie="3">
+                    <span class="movie-number">3</span>
+                    <h3 class="movie-title">Como Treinar seu Dragão 3</h3>
+                    <p class="movie-year">2019</p>
+                    <p class="movie-description">
+                        O final emocionante da trilogia! Um adeus que na verdade é um até sempre, 
+                        mostrando que verdadeiras conexões nunca se perdem.
+                    </p>
+                    <div class="movie-actions">
+                        <button class="btn btn-watch" onclick="watchMovie(3)">
+                            <i class="fas fa-play"></i> Assistir
+                        </button>
+                        <button class="btn btn-download" onclick="downloadMovie(3)">
+                            <i class="fas fa-download"></i> Baixar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal de informações -->
+    <div class="info-modal" id="infoModal">
+        <div class="info-modal-content">
+            <h3 class="info-modal-title" id="modalTitle">Título</h3>
+            <p class="info-modal-text" id="modalText">Mensagem</p>
+            <button class="close-info-btn" onclick="closeInfoModal()">
+                <i class="fas fa-heart"></i> Entendido!
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">
+                “O céu não pertence a quem não cai, mas a quem tem coragem de abrir as asas de novo.” ❤️ <span class="heart">❤️</span>
+            </p>
+            <p class="footer-text">
+                Especialmente para Debora Vezetiv <3
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Criar partículas animadas
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Inicializar partículas
+        createParticles();
+
+        // Dados dos filmes (simulação)
+        const moviesData = {
+            1: {
+                title: 'Como Treinar seu Dragão',
+                file: 'Como Treinar o Seu Dragão.mp4',
+                size: '1.49 GB',
+                duration: '1h 38min'
+            },
+            2: {
+                title: 'Como Treinar seu Dragão 2',
+                file: 'Como Treinar o Seu Dragão 2.mp4',
+                size: '820 MB',
+                duration: '1h 42min'
+            },
+            3: {
+                title: 'Como Treinar seu Dragão 3',
+                file: 'Como Treinar o Seu Dragão 3.mp4',
+                size: '1.1 GB',
+                duration: '1h 44min'
+            }
+        };
+
+        function watchMovie(movieNumber) {
+            const movie = moviesData[movieNumber];
+            
+            // Criar notificação bonita
+            showNotification(`🎬 Iniciando "${movie.title}"... Prepare a pipoca! 🍿`);
+            
+            // Simular abertura do player
+            setTimeout(() => {
+                showInfoModal(
+                    `🎥 ${movie.title}`,
+                    `O filme está começando! Duração: ${movie.duration}<br>
+                    Aproveitem este momento especial juntos! ✨<br><br>
+                    <small>Em um ambiente real, o vídeo seria reproduzido aqui.</small>`
+                );
+            }, 1000);
+        }
+
+        function downloadMovie(movieNumber) {
+            const movie = moviesData[movieNumber];
+            
+            // Criar notificação de download
+            showNotification(`⬇️ Iniciando download de "${movie.title}"...`);
+            
+            // Simular progresso do download
+            let progress = 0;
+            const downloadInterval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(downloadInterval);
+                    
+                    showInfoModal(
+                        `✅ Download Concluído!`,
+                        `"${movie.title}" foi baixado com sucesso!<br>
+                        Tamanho: ${movie.size}<br><br>
+                        Agora vocês podem assistir offline! 🎉<br><br>
+                        <small>O arquivo foi salvo na pasta de downloads.</small>`
+                    );
+                } else {
+                    showNotification(`⬇️ Baixando "${movie.title}": ${Math.round(progress)}%`);
+                }
+            }, 500);
+        }
+
+        function showNotification(message) {
+            // Remover notificação anterior se existir
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            // Criar elemento de notificação
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #ff6b35, #ffd700);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 2000;
+                animation: slideInRight 0.5s ease;
+                max-width: 300px;
+                font-size: 0.95rem;
+            `;
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-dragon"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto-remover após 3 segundos (exceto para downloads em progresso)
+            if (!message.includes('%')) {
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.style.animation = 'slideOutRight 0.5s ease';
+                        setTimeout(() => {
+                            if (notification.parentNode) {
+                                document.body.removeChild(notification);
+                            }
+                        }, 500);
+                    }
+                }, 3000);
+            }
+        }
+
+        function showInfoModal(title, text) {
+            const modal = document.getElementById('infoModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalText = document.getElementById('modalText');
+            
+            modalTitle.innerHTML = title;
+            modalText.innerHTML = text;
+            modal.classList.add('active');
+        }
+
+        function closeInfoModal() {
+            const modal = document.getElementById('infoModal');
+            modal.classList.remove('active');
+        }
+
+        // Adicionar animações CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Fechar modal ao clicar fora
+        document.getElementById('infoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeInfoModal();
+            }
+        });
+
+        // Efeito de hover nos cards com mouse move
+        document.querySelectorAll('.movie-card').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+
+        // Adicionar efeito de brilho ao clicar nos botões
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.5);
+                    left: ${x}px;
+                    top: ${y}px;
+                    pointer-events: none;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Adicionar animação de ripple
+        const rippleStyle = document.createElement('style');
+        rippleStyle.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(rippleStyle);
+    </script>
+</body>
+</html>
