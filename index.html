@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Como Treinar seu Dragão - Para Minha Amor ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Como Treinar seu Dragão - Saga Completa ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -18,21 +18,39 @@
             --secondary-color: #ff6b35;
             --accent-color: #ffd700;
             --text-light: #f0f0f0;
+            --text-dark: #2c3e50;
             --bg-gradient-start: #0f2027;
             --bg-gradient-mid: #203a43;
             --bg-gradient-end: #2c5364;
+            --success-color: #4CAF50;
+            --danger-color: #e74c3c;
+            --info-color: #3498db;
         }
 
         body {
             font-family: 'Quicksand', sans-serif;
             background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-mid), var(--bg-gradient-end));
-            min-height: 100vh;
             color: var(--text-light);
             overflow-x: hidden;
             position: relative;
+            min-height: 100vh;
         }
 
-        /* Partículas animadas de fundo */
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border-radius: 5px;
+        }
+
+        /* Partículas animadas */
         .particles {
             position: fixed;
             top: 0;
@@ -50,7 +68,7 @@
             height: 4px;
             background: rgba(255, 255, 255, 0.5);
             border-radius: 50%;
-            animation: float 15s infinite linear;
+            animation: float 20s infinite linear;
         }
 
         @keyframes float {
@@ -70,12 +88,12 @@
             }
         }
 
-        /* Header */
+        /* Header Principal */
         header {
             position: relative;
             z-index: 10;
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 2rem 1rem;
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
             border-bottom: 2px solid rgba(255, 215, 0, 0.3);
@@ -88,8 +106,8 @@
 
         h1 {
             font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            font-weight: 600;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
             background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -108,14 +126,14 @@
         }
 
         .subtitle {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
             color: var(--accent-color);
             font-style: italic;
             opacity: 0.9;
         }
 
         .dragon-icon {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
             color: var(--secondary-color);
             animation: fly 3s ease-in-out infinite;
             display: inline-block;
@@ -133,59 +151,65 @@
 
         /* Container principal */
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 1rem;
             position: relative;
             z-index: 10;
         }
 
-        /* Mensagem especial */
-        .love-message {
-            background: rgba(255, 107, 53, 0.1);
-            border: 2px solid rgba(255, 107, 53, 0.3);
-            border-radius: 15px;
-            padding: 2rem;
+        /* Navegação Desktop */
+        .desktop-nav {
+            display: flex;
+            justify-content: center;
             margin: 2rem 0;
-            text-align: center;
-            backdrop-filter: blur(5px);
-            animation: fadeInUp 1s ease-out;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-item {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 107, 53, 0.2);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 25px;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(255, 107, 53, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Seções */
+        .section {
+            margin: 3rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+            display: none;
+        }
+
+        .section.active {
+            display: block;
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        .love-message h2 {
-            font-family: 'Cinzel', serif;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-        }
-
-        .love-message p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            opacity: 0.95;
-        }
-
-        /* Seção dos filmes */
-        .movies-section {
-            margin: 4rem 0;
-        }
-
         .section-title {
             font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             color: var(--accent-color);
             position: relative;
         }
@@ -201,11 +225,246 @@
             background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
         }
 
+        /* Mensagem de Amor */
+        .love-message {
+            background: rgba(255, 107, 53, 0.1);
+            border: 2px solid rgba(255, 107, 53, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .love-message h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
+        }
+
+        .love-message p {
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+
+        /* Seção Dragões - NOVA */
+        .dragons-section {
+            padding: 2rem 0;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1.5rem;
+            background: rgba(30, 58, 95, 0.4);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-icon:hover {
+            color: var(--secondary-color);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .search-loading {
+            display: none;
+            text-align: center;
+            margin: 2rem 0;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+
+        .search-loading.active {
+            display: block;
+        }
+
+        .dragon-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .dragon-card {
+            background: rgba(30, 58, 95, 0.4);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dragon-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .dragon-card:hover::before {
+            opacity: 1;
+        }
+
+        .dragon-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
+            border-color: var(--secondary-color);
+        }
+
+        .dragon-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .dragon-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .dragon-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            flex: 1;
+        }
+
+        .dragon-class {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .dragon-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .dragon-stat {
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 0.8rem;
+            text-align: center;
+        }
+
+        .dragon-stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            opacity: 0.8;
+            margin-bottom: 0.3rem;
+        }
+
+        .dragon-stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .dragon-abilities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .dragon-ability {
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 0.5rem 0.8rem;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dragon-ability i {
+            color: var(--accent-color);
+        }
+
+        .dragon-description {
+            line-height: 1.5;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Grid de Filmes */
         .movies-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
         .movie-card {
@@ -218,6 +477,9 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            min-height: 400px;
         }
 
         .movie-card::before {
@@ -237,7 +499,7 @@
         }
 
         .movie-card:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-5px) scale(1.02);
             box-shadow: 0 20px 40px rgba(255, 107, 53, 0.3);
             border-color: var(--secondary-color);
         }
@@ -252,11 +514,17 @@
             font-family: 'Cinzel', serif;
         }
 
+        .movie-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
         .movie-title {
             font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--accent-color);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             position: relative;
             z-index: 2;
         }
@@ -269,22 +537,26 @@
         }
 
         .movie-description {
-            line-height: 1.6;
+            line-height: 1.5;
             opacity: 0.9;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+            flex: 1;
+            font-size: 0.95rem;
         }
 
         .movie-actions {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
+            margin-top: auto;
+            padding-top: 1rem;
         }
 
         .btn {
-            padding: 0.8rem 1.5rem;
+            padding: 0.6rem 1.2rem;
             border: none;
             border-radius: 25px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
@@ -294,16 +566,14 @@
             font-weight: 600;
             flex: 1;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
+            min-width: 100px;
         }
 
         .btn-watch {
             background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
             color: white;
-        }
-
-        .btn-watch:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);
         }
 
         .btn-download {
@@ -312,28 +582,946 @@
             border: 2px solid var(--accent-color);
         }
 
-        .btn-download:hover {
-            background: var(--accent-color);
-            color: var(--primary-color);
+        .btn:hover {
             transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);
         }
 
-        /* Modal de informações */
-        .info-modal {
+        /* Trailers Section */
+        .trailers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .trailer-card {
+            background: rgba(30, 58, 95, 0.4);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .trailer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .trailer-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            background: white;
+        }
+
+        .play-button i {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin-left: 3px;
+        }
+
+        .trailer-info {
+            padding: 1.5rem;
+        }
+
+        .trailer-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .trailer-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        /* Personagens */
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .character-card {
+            background: rgba(30, 58, 95, 0.4);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .character-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .character-card:hover::before {
+            opacity: 1;
+        }
+
+        .character-card:hover {
+            transform: translateY(-5px) rotate(2deg);
+            border-color: var(--secondary-color);
+            box-shadow: 0 15px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .character-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(255, 215, 0, 0.3);
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+        }
+
+        .character-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .character-card:hover .character-avatar img {
+            transform: scale(1.1);
+        }
+
+        .character-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .character-role {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Criadores */
+        .creators-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--secondary-color), var(--accent-color));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: rgba(30, 58, 95, 0.4);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 0 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .timeline-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        /* Mapa Interativo de Berk - MELHORADO */
+        .berk-map-container {
+            background: rgba(30, 58, 95, 0.4);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            min-height: 700px;
+            overflow: hidden;
+        }
+
+        .berk-map {
+            position: relative;
+            width: 100%;
+            height: 650px;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(135, 206, 235, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at center, rgba(255, 107, 53, 0.15) 0%, transparent 70%),
+                linear-gradient(135deg, 
+                    rgba(30, 58, 95, 0.4) 0%, 
+                    rgba(44, 83, 100, 0.4) 50%,
+                    rgba(30, 58, 95, 0.4) 100%);
+            border-radius: 20px;
+            box-shadow: 
+                inset 0 0 80px rgba(255, 215, 0, 0.1),
+                0 15px 40px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+
+        /* Ilha principal - MELHORADA */
+        .island-main {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 450px;
+            height: 320px;
+            background: 
+                radial-gradient(ellipse at 30% 30%, #8B7355, #6B5D54),
+                linear-gradient(135deg, #8B7355, #A0826D);
+            border-radius: 50% 40% 60% 30%;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                inset 0 0 40px rgba(255, 215, 0, 0.15);
+            animation: float-island 10s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .island-main::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 20%;
+            width: 35%;
+            height: 45%;
+            background: rgba(34, 139, 34, 0.4);
+            border-radius: 50%;
+            filter: blur(12px);
+            animation: forest-glow 4s ease-in-out infinite alternate;
+        }
+
+        .island-main::after {
+            content: '';
+            position: absolute;
+            bottom: 15%;
+            right: 25%;
+            width: 30%;
+            height: 40%;
+            background: rgba(34, 139, 34, 0.3);
+            border-radius: 50%;
+            filter: blur(10px);
+            animation: forest-glow 4s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes forest-glow {
+            from {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0.5;
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes float-island {
+            0%, 100% {
+                transform: translate(-50%, -50%) translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translate(-50%, -50%) translateY(-20px) rotate(1deg);
+            }
+        }
+
+        /* Montanhas ao fundo - MELHORADAS */
+        .mountain {
+            position: absolute;
+            background: linear-gradient(135deg, #4A5568, #2D3748);
+            opacity: 0.7;
+            border-radius: 50% 20% 30% 40%;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .mountain-1 {
+            top: 5%;
+            left: 5%;
+            width: 200px;
+            height: 160px;
+            transform: rotate(-15deg);
+            background: linear-gradient(135deg, #5A6578, #3D4758);
+        }
+
+        .mountain-2 {
+            top: 8%;
+            right: 10%;
+            width: 220px;
+            height: 180px;
+            transform: rotate(10deg);
+            background: linear-gradient(135deg, #4A5568, #2D3748);
+        }
+
+        .mountain-3 {
+            bottom: 15%;
+            left: 8%;
+            width: 180px;
+            height: 140px;
+            transform: rotate(5deg);
+            background: linear-gradient(135deg, #6A7588, #4D5768);
+        }
+
+        .mountain-4 {
+            bottom: 20%;
+            right: 15%;
+            width: 160px;
+            height: 120px;
+            transform: rotate(-8deg);
+            background: linear-gradient(135deg, #5A6578, #3D4758);
+        }
+
+        /* Nuvens animadas - MELHORADAS */
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 100px;
+            opacity: 0.5;
+            animation: drift-cloud 25s infinite linear;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 100px;
+        }
+
+        .cloud-1 {
+            width: 120px;
+            height: 50px;
+            top: 15%;
+            left: -120px;
+        }
+
+        .cloud-1::before {
+            width: 60px;
+            height: 60px;
+            top: -30px;
+            left: 15px;
+        }
+
+        .cloud-1::after {
+            width: 70px;
+            height: 50px;
+            top: -20px;
+            right: 15px;
+        }
+
+        .cloud-2 {
+            width: 100px;
+            height: 40px;
+            top: 35%;
+            left: -100px;
+            animation-delay: 12s;
+        }
+
+        .cloud-2::before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 20px;
+        }
+
+        .cloud-2::after {
+            width: 60px;
+            height: 40px;
+            top: -15px;
+            right: 20px;
+        }
+
+        .cloud-3 {
+            width: 90px;
+            height: 35px;
+            top: 60%;
+            left: -90px;
+            animation-delay: 18s;
+        }
+
+        .cloud-3::before {
+            width: 45px;
+            height: 45px;
+            top: -22px;
+            left: 25px;
+        }
+
+        .cloud-3::after {
+            width: 55px;
+            height: 35px;
+            top: -12px;
+            right: 25px;
+        }
+
+        @keyframes drift-cloud {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(calc(100vw + 250px));
+            }
+        }
+
+        /* Oceano animado */
+        .ocean {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(180deg, 
+                rgba(30, 58, 95, 0.3) 0%, 
+                rgba(44, 83, 100, 0.5) 50%,
+                rgba(30, 58, 95, 0.7) 100%);
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+            animation: ocean-wave 8s ease-in-out infinite;
+        }
+
+        .ocean::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: wave-foam 3s ease-in-out infinite;
+        }
+
+        @keyframes ocean-wave {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes wave-foam {
+            0%, 100% {
+                opacity: 0.3;
+                transform: translateX(0);
+            }
+            50% {
+                opacity: 0.6;
+                transform: translateX(20px);
+            }
+        }
+
+        /* Locais clicáveis - MELHORADOS */
+        .location {
+            position: absolute;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 8px 20px rgba(255, 215, 0, 0.5),
+                inset 0 0 15px rgba(255, 255, 255, 0.4);
+            z-index: 10;
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .location:hover {
+            transform: scale(1.3) rotate(8deg);
+            box-shadow: 
+                0 12px 30px rgba(255, 215, 0, 0.7),
+                inset 0 0 20px rgba(255, 255, 255, 0.6);
+        }
+
+        .location::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            animation: pulse 2.5s infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        .location-village {
+            top: 45%;
+            left: 48%;
+        }
+
+        .location-dragon-nest {
+            top: 20%;
+            left: 30%;
+        }
+
+        .location-training-ground {
+            top: 65%;
+            left: 70%;
+        }
+
+        .location-lookout {
+            top: 15%;
+            left: 75%;
+        }
+
+        .location-docks {
+            top: 75%;
+            left: 25%;
+        }
+
+        .location-blacksmith {
+            top: 50%;
+            left: 60%;
+        }
+
+        .location-great-hall {
+            top: 35%;
+            left: 45%;
+        }
+
+        .location-dragon-arena {
+            top: 60%;
+            left: 35%;
+        }
+
+        .location-dragon-stables {
+            top: 40%;
+            left: 65%;
+        }
+
+        .location-market {
+            top: 55%;
+            left: 40%;
+        }
+
+        /* Tooltips dos locais */
+        .location-tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 100;
+            top: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+        }
+
+        .location:hover .location-tooltip {
+            opacity: 1;
+            top: -50px;
+        }
+
+        /* Dragões voando - MELHORADOS */
+        .flying-dragon {
+            position: absolute;
+            font-size: 2rem;
+            color: var(--secondary-color);
+            animation: fly-dragon 18s infinite linear;
+            opacity: 0.8;
+            z-index: 5;
+            filter: drop-shadow(0 5px 10px rgba(255, 107, 53, 0.5));
+        }
+
+        .dragon-1 {
+            top: 25%;
+            animation-delay: 0s;
+            animation-duration: 20s;
+        }
+
+        .dragon-2 {
+            top: 55%;
+            animation-delay: 6s;
+            animation-duration: 18s;
+        }
+
+        .dragon-3 {
+            top: 40%;
+            animation-delay: 12s;
+            animation-duration: 22s;
+        }
+
+        .dragon-4 {
+            top: 30%;
+            animation-delay: 9s;
+            animation-duration: 16s;
+        }
+
+        @keyframes fly-dragon {
+            0% {
+                left: -80px;
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            20% {
+                transform: translateY(-30px) rotate(-10deg) scale(1.1);
+            }
+            40% {
+                transform: translateY(15px) rotate(8deg) scale(0.9);
+            }
+            60% {
+                transform: translateY(-25px) rotate(-5deg) scale(1.05);
+            }
+            80% {
+                transform: translateY(10px) rotate(3deg) scale(0.95);
+            }
+            100% {
+                left: calc(100% + 80px);
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+        }
+
+        /* Fogueiras e fumaça */
+        .fire-pit {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #ff6b35, #ffd700);
+            border-radius: 50%;
+            animation: fire-flicker 2s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.8);
+        }
+
+        .fire-pit::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 30px;
+            background: rgba(150, 150, 150, 0.3);
+            border-radius: 50%;
+            animation: smoke-rise 3s ease-in-out infinite;
+        }
+
+        @keyframes fire-flicker {
+            0%, 100% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes smoke-rise {
+            0% {
+                opacity: 0.3;
+                transform: translateX(-50%) translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-30px);
+            }
+        }
+
+        .fire-1 {
+            top: 52%;
+            left: 45%;
+        }
+
+        .fire-2 {
+            top: 48%;
+            left: 55%;
+        }
+
+        .fire-3 {
+            top: 55%;
+            left: 50%;
+        }
+
+        /* Seções de informações detalhadas */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .info-card {
+            background: rgba(30, 58, 95, 0.4);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 15px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .info-card-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .info-card-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+
+        /* Estatísticas avançadas */
+        .advanced-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: rgba(30, 58, 95, 0.4);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary-color);
+        }
+
+        .stat-number {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        /* Timeline da saga */
+        .saga-timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin: 2rem 0;
+        }
+
+        .saga-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--secondary-color), var(--accent-color));
+            transform: translateX(-50%);
+        }
+
+        .saga-event {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .saga-event:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .saga-event-content {
+            flex: 1;
+            background: rgba(30, 58, 95, 0.4);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 0 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .saga-event-dot {
+            width: 16px;
+            height: 16px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .saga-event-year {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .saga-event-title {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .saga-event-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        /* Curiosidades */
+        .curiosity-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .curiosity-item {
+            background: rgba(255, 107, 53, 0.1);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0 10px 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .curiosity-item:hover {
+            background: rgba(255, 107, 53, 0.2);
+            transform: translateX(5px);
+        }
+
+        .curiosity-item strong {
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Modal */
+        .modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
             justify-content: center;
             align-items: center;
             backdrop-filter: blur(5px);
         }
 
-        .info-modal.active {
+        .modal.active {
             display: flex;
             animation: fadeIn 0.3s ease;
         }
@@ -347,16 +1535,17 @@
             }
         }
 
-        .info-modal-content {
+        .modal-content {
             background: linear-gradient(135deg, var(--bg-gradient-mid), var(--bg-gradient-end));
             border: 2px solid var(--accent-color);
             border-radius: 20px;
             padding: 2rem;
-            max-width: 500px;
-            width: 90%;
+            max-width: 90%;
+            max-height: 90%;
+            width: 600px;
             position: relative;
             animation: slideIn 0.3s ease;
-            text-align: center;
+            overflow-y: auto;
         }
 
         @keyframes slideIn {
@@ -370,33 +1559,119 @@
             }
         }
 
-        .info-modal-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-
-        .info-modal-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 1.5rem;
         }
 
-        .close-info-btn {
-            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
-            color: white;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 25px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .modal-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--accent-color);
         }
 
-        .close-info-btn:hover {
+        .close-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            padding: 0.5rem;
+        }
+
+        .close-btn:hover {
+            color: var(--secondary-color);
+        }
+
+        .modal-body {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .modal-btn {
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+
+        .modal-btn-primary {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+        }
+
+        .modal-btn-secondary {
+            background: transparent;
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+        }
+
+        .modal-btn:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Navegação Mobile */
+        .mobile-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none;
+            border-top: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .mobile-nav-items {
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5rem 0;
+        }
+
+        .mobile-nav-item {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            margin: 0 0.25rem;
+        }
+
+        .mobile-nav-item.active {
+            background: rgba(255, 107, 53, 0.3);
+            color: var(--accent-color);
+        }
+
+        .mobile-nav-item i {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .mobile-nav-item span {
+            font-size: 0.7rem;
+            font-weight: 600;
         }
 
         /* Footer */
@@ -436,25 +1711,148 @@
 
         /* Responsividade */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
+            .mobile-nav {
+                display: block;
             }
 
-            .section-title {
-                font-size: 1.8rem;
+            .desktop-nav {
+                display: none;
+            }
+
+            .container {
+                padding-bottom: 80px;
+            }
+
+            .timeline-line {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                padding-left: 50px;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .timeline-content {
+                margin: 0;
             }
 
             .movies-grid {
                 grid-template-columns: 1fr;
             }
 
-            .movie-card {
-                padding: 1rem;
+            .trailers-grid {
+                grid-template-columns: 1fr;
             }
 
-            .btn {
-                font-size: 0.9rem;
-                padding: 0.6rem 1rem;
+            .characters-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .advanced-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .saga-timeline::before {
+                left: 20px;
+            }
+
+            .saga-event {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                padding-left: 50px;
+            }
+
+            .saga-event-dot {
+                left: 20px;
+            }
+
+            .saga-event-content {
+                margin: 0;
+            }
+
+            .berk-map {
+                height: 450px;
+            }
+
+            .island-main {
+                width: 300px;
+                height: 220px;
+            }
+
+            .location {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .mountain {
+                display: none;
+            }
+
+            .dragon-results {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Notificação */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b35, #ffd700);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 3000;
+            animation: slideInRight 0.5s ease;
+            max-width: 300px;
+            font-size: 0.95rem;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
             }
         }
     </style>
@@ -466,109 +1864,631 @@
     <!-- Header -->
     <header>
         <div class="title-container">
-            <span class="dragon-icon">🐉</span>
             <h1>Como Treinar seu Dragão</h1>
-            <span class="dragon-icon">🐲</span>
+            <span class="dragon-icon">🐉</span>
         </div>
         <p class="subtitle">Uma aventura mágica compartilhada com você, meu amor</p>
     </header>
 
+    <!-- Navegação Desktop -->
+    <nav class="desktop-nav">
+        <a href="#home" class="nav-item active" onclick="showSection('home')">
+            <i class="fas fa-home"></i> Início
+        </a>
+        <a href="#dragons" class="nav-item" onclick="showSection('dragons')">
+            <i class="fas fa-dragon"></i> Dragões
+        </a>
+        <a href="#movies" class="nav-item" onclick="showSection('movies')">
+            <i class="fas fa-film"></i> Filmes
+        </a>
+        <a href="#trailers" class="nav-item" onclick="showSection('trailers')">
+            <i class="fas fa-play-circle"></i> Trailers
+        </a>
+        <a href="#characters" class="nav-item" onclick="showSection('characters')">
+            <i class="fas fa-users"></i> Personagens
+        </a>
+        <a href="#creators" class="nav-item" onclick="showSection('creators')">
+            <i class="fas fa-user-tie"></i> Criadores
+        </a>
+        <a href="#berk" class="nav-item" onclick="showSection('berk')">
+            <i class="fas fa-map"></i> Berk
+        </a>
+        <a href="#curiosities" class="nav-item" onclick="showSection('curiosities')">
+            <i class="fas fa-lightbulb"></i> Curiosidades
+        </a>
+    </nav>
+
     <!-- Container principal -->
     <div class="container">
-        <!-- Mensagem especial -->
-        <section class="love-message">
-            <h2>Para a pessoa mais especial do meu mundo</h2>
-            <p>
-                Assim como Soluço e Banguela, nossa jornada é cheia de aventuras, descobertas e um amor que 
-                voa mais alto que qualquer dragão. Cada filme que assistirmos juntos será mais um capítulo 
-                na nossa própria história épica. ❤️
-            </p>
+        <!-- Seção Início -->
+        <section id="home" class="section active">
+            <!-- Mensagem especial -->
+            <div class="love-message">
+                <h2>Para a pessoa mais especial do meu mundo</h2>
+                <p>
+                    Assim como Soluço e Banguela, nossa jornada é cheia de aventuras, descobertas e um amor que 
+                    voa mais alto que qualquer dragão. Cada filme que assistirmos juntos será mais um capítulo 
+                    na nossa própria história épica. ❤️
+                </p>
+            </div>
+
+            <!-- Estatísticas da Saga -->
+            <h2 class="section-title">Saga em Números</h2>
+            <div class="advanced-stats">
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Filmes Principais</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Anos de Saga</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$1.8B</div>
+                    <div class="stat-label">Bilheteria Mundial</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Prêmios Ganhos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">80+</div>
+                    <div class="stat-label">Espécies de Dragões</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">35+</div>
+                    <div class="stat-label">Países Lançados</div>
+                </div>
+            </div>
+
+            <!-- Cards de Informações -->
+            <h2 class="section-title">A Magia por Trás da Saga</h2>
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="info-card-icon">📚</div>
+                    <h3 class="info-card-title">Origem Literária</h3>
+                    <p class="info-card-text">
+                        Baseada nos livros de Cressida Cowell, a saga começou em 2003 com 12 livros 
+                        que contam as aventuras de um jovem viking e seu dragão.
+                    </p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon">🎵</div>
+                    <h3 class="info-card-title">Trilha Sonora</h3>
+                    <p class="info-card-text">
+                        Composta por John Powell, a música épica da saga ganhou o Grammy e 
+                        é considerada uma das melhores trilhas sonoras de animação.
+                    </p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon">🏆</div>
+                    <h3 class="info-card-title">Reconhecimento</h3>
+                    <p class="info-card-text">
+                        Indicada ao Oscar de Melhor Animação, venceu Annie Awards, 
+                        Golden Globes e Critics' Choice Movie Awards.
+                    </p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon">🌍</div>
+                    <h3 class="info-card-title">Impacto Cultural</h3>
+                    <p class="info-card-text">
+                        Inspirou séries de TV, jogos, parques temáticos e mudou 
+                        a percepção sobre dragões na cultura popular.
+                    </p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon">💻</div>
+                    <h3 class="info-card-title">Inovação Técnica</h3>
+                    <p class="info-card-text">
+                        DreamWorks desenvolveu tecnologias revolucionárias para animação 
+                        de escamas, fogo e movimentos dos dragões.
+                    </p>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-icon">❤️</div>
+                    <h3 class="info-card-title">Mensagem Universal</h3>
+                    <p class="info-card-text">
+                        A saga ensina sobre amizade, superação, aceitação das diferenças 
+                        e o poder da empatia em transformar o mundo.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Timeline da Saga -->
+            <h2 class="section-title">Jornada da Saga</h2>
+            <div class="saga-timeline">
+                <div class="saga-event">
+                    <div class="saga-event-dot"></div>
+                    <div class="saga-event-content">
+                        <div class="saga-event-year">2010</div>
+                        <div class="saga-event-title">O Início da Aventura</div>
+                        <div class="saga-event-description">
+                            Lançamento do primeiro filme que apresentou ao mundo a amizade 
+                            entre Soluço e Banguela, mudando para sempre a animação.
+                        </div>
+                    </div>
+                </div>
+                <div class="saga-event">
+                    <div class="saga-event-dot"></div>
+                    <div class="saga-event-content">
+                        <div class="saga-event-year">2011-2013</div>
+                        <div class="saga-event-title">Expansão do Universo</div>
+                        <div class="saga-event-description">
+                            Séries "Race to the Edge" e "Riders of Berk" expandiram 
+                            o mundo com novos personagens e dragões.
+                        </div>
+                    </div>
+                </div>
+                <div class="saga-event">
+                    <div class="saga-event-dot"></div>
+                    <div class="saga-event-content">
+                        <div class="saga-event-year">2014</div>
+                        <div class="saga-event-title">A Continuação Épica</div>
+                        <div class="saga-event-description">
+                            O segundo filme elevou a saga com visuais deslumbrantes 
+                            e uma história mais madura sobre liderança e sacrifício.
+                        </div>
+                    </div>
+                </div>
+                <div class="saga-event">
+                    <div class="saga-event-dot"></div>
+                    <div class="saga-event-content">
+                        <div class="saga-event-year">2019</div>
+                        <div class="saga-event-title">O Adeus Emocionante</div>
+                        <div class="saga-event-description">
+                            O filme final encerrou a trilogia com uma mensagem poderosa 
+                            sobre deixar ir e a eternidade dos laços verdadeiros.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Seção dos filmes -->
-        <section class="movies-section">
+        <!-- Seção Dragões - NOVA -->
+        <section id="dragons" class="section">
+            <h2 class="section-title">Enciclopédia de Dragões</h2>
+            
+            <div class="search-container">
+                <input type="text" class="search-box" id="dragonSearch" placeholder="🔍 Pesquisar dragões por nome, classe ou habilidade...">
+                <i class="fas fa-search search-icon" onclick="searchDragons()"></i>
+            </div>
+
+            <div class="search-loading" id="searchLoading">
+                <div class="loading"></div>
+                <p>Buscando dragões...</p>
+            </div>
+
+            <div class="dragon-results" id="dragonResults">
+                <!-- Resultados da pesquisa serão inseridos aqui -->
+            </div>
+        </section>
+
+        <!-- Seção Filmes -->
+        <section id="movies" class="section">
             <h2 class="section-title">Nossa Saga Dragônica</h2>
             
             <div class="movies-grid" id="moviesGrid">
                 <!-- Filme 1 -->
                 <div class="movie-card" data-movie="1">
                     <span class="movie-number">1</span>
-                    <h3 class="movie-title">Como Treinar seu Dragão</h3>
-                    <p class="movie-year">2010</p>
-                    <p class="movie-description">
-                        O início de tudo! Onde um jovem viking e um dragão incomum provam que a amizade 
-                        pode mudar o mundo. O primeiro capítulo da nossa aventura.
-                    </p>
-                    <div class="movie-actions">
-                        <button class="btn btn-watch" onclick="watchMovie(1)">
-                            <i class="fas fa-play"></i> Assistir
-                        </button>
-                        <button class="btn btn-download" onclick="downloadMovie(1)">
-                            <i class="fas fa-download"></i> Baixar
-                        </button>
+                    <div class="movie-content">
+                        <h3 class="movie-title">Como Treinar seu Dragão</h3>
+                        <p class="movie-year">2010</p>
+                        <p class="movie-description">
+                            O início de tudo! Onde um jovem viking e um dragão incomum provam que a amizade 
+                            pode mudar o mundo. O primeiro capítulo da nossa aventura.
+                        </p>
+                        <div class="movie-actions">
+                            <button class="btn btn-watch" onclick="openMovieOptions(1)">
+                                <i class="fas fa-play"></i> Assistir
+                            </button>
+                            <button class="btn btn-download" onclick="openDownloadOptions(1)">
+                                <i class="fas fa-download"></i> Baixar
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Filme 2 -->
                 <div class="movie-card" data-movie="2">
                     <span class="movie-number">2</span>
-                    <h3 class="movie-title">Como Treinar seu Dragão 2</h3>
-                    <p class="movie-year">2014</p>
-                    <p class="movie-description">
-                        Novos mundos, novos desafios e um amor que só cresce! A continuação da nossa 
-                        jornada épica juntos.
-                    </p>
-                    <div class="movie-actions">
-                        <button class="btn btn-watch" onclick="watchMovie(2)">
-                            <i class="fas fa-play"></i> Assistir
-                        </button>
-                        <button class="btn btn-download" onclick="downloadMovie(2)">
-                            <i class="fas fa-download"></i> Baixar
-                        </button>
+                    <div class="movie-content">
+                        <h3 class="movie-title">Como Treinar seu Dragão 2</h3>
+                        <p class="movie-year">2014</p>
+                        <p class="movie-description">
+                            Novos mundos, novos desafios e um amor que só cresce! A continuação da nossa 
+                            jornada épica juntos.
+                        </p>
+                        <div class="movie-actions">
+                            <button class="btn btn-watch" onclick="openMovieOptions(2)">
+                                <i class="fas fa-play"></i> Assistir
+                            </button>
+                            <button class="btn btn-download" onclick="openDownloadOptions(2)">
+                                <i class="fas fa-download"></i> Baixar
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Filme 3 -->
                 <div class="movie-card" data-movie="3">
                     <span class="movie-number">3</span>
-                    <h3 class="movie-title">Como Treinar seu Dragão 3</h3>
-                    <p class="movie-year">2019</p>
-                    <p class="movie-description">
-                        O final emocionante da trilogia! Um adeus que na verdade é um até sempre, 
-                        mostrando que verdadeiras conexões nunca se perdem.
-                    </p>
-                    <div class="movie-actions">
-                        <button class="btn btn-watch" onclick="watchMovie(3)">
-                            <i class="fas fa-play"></i> Assistir
-                        </button>
-                        <button class="btn btn-download" onclick="downloadMovie(3)">
-                            <i class="fas fa-download"></i> Baixar
-                        </button>
+                    <div class="movie-content">
+                        <h3 class="movie-title">Como Treinar seu Dragão 3</h3>
+                        <p class="movie-year">2019</p>
+                        <p class="movie-description">
+                            O final emocionante da trilogia! Um adeus que na verdade é um até sempre, 
+                            mostrando que verdadeiras conexões nunca se perdem.
+                        </p>
+                        <div class="movie-actions">
+                            <button class="btn btn-watch" onclick="openMovieOptions(3)">
+                                <i class="fas fa-play"></i> Assistir
+                            </button>
+                            <button class="btn btn-download" onclick="openDownloadOptions(3)">
+                                <i class="fas fa-download"></i> Baixar
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Seção Trailers -->
+        <section id="trailers" class="section">
+            <h2 class="section-title">Trailers Oficiais</h2>
+            
+            <div class="trailers-grid">
+                <div class="trailer-card">
+                    <div class="trailer-thumbnail" onclick="playTrailer(1)">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="trailer-info">
+                        <h3 class="trailer-title">Trailer Oficial - Filme 1</h3>
+                        <p class="trailer-description">O primeiro vislumbre da aventura que mudaria tudo</p>
+                    </div>
+                </div>
+
+                <div class="trailer-card">
+                    <div class="trailer-thumbnail" onclick="playTrailer(2)">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="trailer-info">
+                        <h3 class="trailer-title">Trailer Oficial - Filme 2</h3>
+                        <p class="trailer-description">A batalha épica continua com novos desafios</p>
+                    </div>
+                </div>
+
+                <div class="trailer-card">
+                    <div class="trailer-thumbnail" onclick="playTrailer(3)">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="trailer-info">
+                        <h3 class="trailer-title">Trailer Oficial - Filme 3</h3>
+                        <p class="trailer-description">O final emocionante da trilogia</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Personagens -->
+        <section id="characters" class="section">
+            <h2 class="section-title">Personagens Inesquecíveis</h2>
+            
+            <div class="characters-grid">
+                <div class="character-card" onclick="showCharacterInfo('hiccup')">
+                    <div class="character-avatar">
+                        <img src="https://static.wikia.nocookie.net/comotreinarseudragao/images/6/60/Hiccup-HTTYD2.png/revision/latest/smart/width/250/height/250?cb=20181221012848&path-prefix=pt-br" alt="Soluço">
+                    </div>
+                    <h3 class="character-name">Soluço</h3>
+                    <p class="character-role">O Treinador de Dragões</p>
+                </div>
+
+                <div class="character-card" onclick="showCharacterInfo('toothless')">
+                    <div class="character-avatar">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_jq__Hyr1rlDsCTN3KHcmzDWDQJ4JfDMw5g&s" alt="Banguela">
+                    </div>
+                    <h3 class="character-name">Banguela</h3>
+                    <p class="character-role">Fúria da Noite</p>
+                </div>
+
+                <div class="character-card" onclick="showCharacterInfo('astrid')">
+                    <div class="character-avatar">
+                        <img src="https://pm1.aminoapps.com/6525/36752f19a46f03a11c6f5bab231b08209c5095da_hq.jpg" alt="Astrid">
+                    </div>
+                    <h3 class="character-name">Astrid</h3>
+                    <p class="character-role">Guerreira Viking</p>
+                </div>
+
+                <div class="character-card" onclick="showCharacterInfo('snotlout')">
+                    <div class="character-avatar">
+                        <img src="https://pm1.aminoapps.com/7157/fa9ae294eaf79395149a20ae173a230bbc3ac86er1-431-264v2_00.jpg" alt="Melequento">
+                    </div>
+                    <h3 class="character-name">Melequento</h3>
+                    <p class="character-role">O Competidor</p>
+                </div>
+
+                <div class="character-card" onclick="showCharacterInfo('fishlegs')">
+                    <div class="character-avatar">
+                        <img src="https://m.media-amazon.com/images/I/81-0Gl6zHzL.jpg" alt="Perna-de-Peixe">
+                    </div>
+                    <h3 class="character-name">Perna-de-Peixe</h3>
+                    <p class="character-role">O Sábio</p>
+                </div>
+
+                <div class="character-card" onclick="showCharacterInfo('ruffnut')">
+                    <div class="character-avatar">
+                        <img src="https://static.wikia.nocookie.net/comotreinarseudragao/images/5/51/Race_to_the_Edge_Ruffnut.png/revision/latest/scale-to-width-down/960?cb=20190606175520&path-prefix=pt-br" alt="Ruffnut Thorston">
+                    </div>
+                    <h3 class="character-name">Cabeça Quente</h3>
+                    <p class="character-role">Ousada</p>
+                </div>
+
+                <div class="character-card" onclick="showCharacterInfo('tuffnut')">
+                    <div class="character-avatar">
+                        <img src="https://static.wikia.nocookie.net/comotreinarseudragao/images/2/25/Race_to_the_Edge_Tuffnut.png/revision/latest?cb=20190606181223&path-prefix=pt-br" alt="Tuffnut Thorston">
+                    </div>
+                    <h3 class="character-name">Cabeça Dura</h3>
+                    <p class="character-role">Caótico</p>
+                </div>
+
+                <div class="character-card" onclick="showCharacterInfo('stoick')">
+                    <div class="character-avatar">
+                        <img src="https://static.wikia.nocookie.net/comotreinarseudragao/images/5/5f/Stoick.jpg/revision/latest?cb=20161018235457&path-prefix=pt-br" alt="Stoick">
+                    </div>
+                    <h3 class="character-name">Stoick</h3>
+                    <p class="character-role">O Chefe</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Criadores -->
+        <section id="creators" class="section">
+            <h2 class="section-title">Os Mentes por Trás da Magia</h2>
+            
+            <div class="creators-timeline">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Dean DeBlois & Chris Sanders</h3>
+                        <p class="timeline-description">
+                            Diretores do primeiro filme. Criaram a visão inicial de Berk e transformaram 
+                            o livro de Cressida Cowell em uma obra-prima animada.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Cressida Cowell</h3>
+                        <p class="timeline-description">
+                            Autora original dos livros. Sua imaginação deu vida aos personagens que 
+                            amamos, começando com o primeiro livro em 2003.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">John Powell</h3>
+                        <p class="timeline-description">
+                            Compositor da trilha sonora épica. Suas melodias capturam a essência 
+                            da aventura e da emoção da saga.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">DreamWorks Animation</h3>
+                        <p class="timeline-description">
+                            Estúdio responsável pela animação revolucionária. Criou visuais 
+                            deslumbrantes que deram vida aos dragões.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Mapa de Berk -->
+        <section id="berk" class="section">
+            <h2 class="section-title">Explore a Ilha de Berk</h2>
+            
+            <div class="berk-map-container">
+                <div class="berk-map">
+                    <!-- Montanhas ao fundo -->
+                    <div class="mountain mountain-1"></div>
+                    <div class="mountain mountain-2"></div>
+                    <div class="mountain mountain-3"></div>
+                    <div class="mountain mountain-4"></div>
+                    
+                    <!-- Nuvens animadas -->
+                    <div class="cloud cloud cloud-1"></div>
+                    <div class="cloud cloud-2"></div>
+                    <div class="cloud cloud-3"></div>
+                    
+                    <!-- Dragões voando -->
+                    <div class="flying-dragon dragon-1">🐲</div>
+                    <div class="flying-dragon dragon-2">🐉</div>
+                    <div class="flying-dragon dragon-3">🦅</div>
+                    <div class="flying-dragon dragon-4">🐉</div>
+                    
+                    <!-- Ilha principal -->
+                    <div class="island-main"></div>
+                    
+                    <!-- Fogueiras -->
+                    <div class="fire-pit fire-1"></div>
+                    <div class="fire-pit fire-2"></div>
+                    <div class="fire-pit fire-3"></div>
+                    
+                    <!-- Oceano -->
+                    <div class="ocean"></div>
+                    
+                    <!-- Locais clicáveis -->
+                    <div class="location location-village" onclick="showLocationInfo('vila')">
+                        <i class="fas fa-home"></i>
+                        <div class="location-tooltip">Vila de Berk</div>
+                    </div>
+                    
+                    <div class="location location-dragon-nest" onclick="showLocationInfo('ninho')">
+                        <i class="fas fa-dragon"></i>
+                        <div class="location-tooltip">Ninho dos Dragões</div>
+                    </div>
+                    
+                    <div class="location location-training-ground" onclick="showLocationInfo('treinamento')">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div class="location-tooltip">Campo de Treinamento</div>
+                    </div>
+                    
+                    <div class="location-lookout" onclick="showLocationInfo('vigia')">
+                        <i class="fas fa-binoculars"></i>
+                        <div class="location-tooltip">Posto de Vigia</div>
+                    </div>
+                    
+                    <div class="location-docks" onclick="showLocationInfo('docas')">
+                        <i class="fas fa-ship"></i>
+                        <div class="location-tooltip">Docas</div>
+                    </div>
+                    
+                    <div class="location-blacksmith" onclick="showLocationInfo('ferreiro')">
+                        <i class="fas fa-hammer"></i>
+                        <div class="location-tooltip">Ferreiro</div>
+                    </div>
+                    
+                    <div class="location-great-hall" onclick="showLocationInfo('grande_salao')">
+                        <i class="fas fa-chess-rook"></i>
+                        <div class="location-tooltip">Grande Salão</div>
+                    </div>
+                    
+                    <div class="location-dragon-arena" onclick="showLocationInfo('arena')">
+                        <i class="fas fa-shield-alt"></i>
+                        <div class="location-tooltip">Arena de Dragões</div>
+                    </div>
+                    
+                    <div class="location location-dragon-stables" onclick="showLocationInfo('estabulos')">
+                        <i class="fas fa-horse"></i>
+                        <div class="location-tooltip">Estábulos de Dragões</div>
+                    </div>
+                    
+                    <div class="location location-market" onclick="showLocationInfo('mercado')">
+                        <i class="fas fa-store"></i>
+                        <div class="location-tooltip">Mercado Viking</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Curiosidades -->
+        <section id="curiosities" class="section">
+            <h2 class="section-title">Curiosidades Fascinantes</h2>
+            
+            <ul class="curiosity-list">
+                <li class="curiosity-item">
+                    <strong>🐉 Banguela foi inspirado em um gato!</strong>
+                    Os animadores usaram o comportamento de gatos domésticos como referência para os movimentos e personalidade do Fúria da Noite.
+                </li>
+                <li class="curiosity-item">
+                    <strong>🎫 Mais de 500 milhões de dólares</strong>
+                    Apenas o primeiro filme arrecadou mais de $500 milhões mundialmente, tornando-se um enorme sucesso.
+                </li>
+                <li class="curiosity-item">
+                    <strong>📚 12 livros na série original</strong>
+                    Cressida Cowell escreveu 12 livros que serviram de base para a saga animada.
+                </li>
+                <li class="curiosity-item">
+                    <strong>🏆 Oscar de Melhor Animação</strong>
+                    O primeiro filme foi indicado ao Oscar e ganhou inúmeros prêmios de animação.
+                </li>
+                <li class="curiosity-item">
+                    <strong>🎵 3 anos para compor</strong>
+                    John Powell levou 3 anos para criar a trilha sonora perfeita para a saga.
+                </li>
+                <li class="curiosity-item">
+                    <strong>🌍 Mais de 30 países</strong>
+                    Os filmes foram dublados e lançados em mais de 30 países ao redor do mundo.
+                </li>
+                <li class="curiosity-item">
+                    <strong>🔥 20.000 escamas animadas</strong>
+                    Cada dragão tinha milhares de escamas individualmente animadas em cada frame.
+                </li>
+                <li class="curiosity-item">
+                    <strong>🎬 5 anos de produção</strong>
+                    Cada filme levou aproximadamente 5 anos para ser produzido do conceito ao lançamento.
+                </li>
+                <li class="curiosity-item">
+                    <strong>🎬 Live Action 2025</strong>
+                    O novo filme live-action tem orçamento de $150 milhões e estrelas como Mason Thames e Nico Parker.
+                </li>
+            </ul>
+        </section>
     </div>
 
-    <!-- Modal de informações -->
-    <div class="info-modal" id="infoModal">
-        <div class="info-modal-content">
-            <h3 class="info-modal-title" id="modalTitle">Título</h3>
-            <p class="info-modal-text" id="modalText">Mensagem</p>
-            <button class="close-info-btn" onclick="closeInfoModal()">
-                <i class="fas fa-heart"></i> Entendido!
-            </button>
+    <!-- Modal -->
+    <div class="modal" id="optionsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Escolha uma opção</h3>
+                <button class="close-btn" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Conteúdo dinâmico -->
+            </div>
+            <div class="modal-buttons" id="modalButtons">
+                <!-- Botões serão adicionados dinamicamente -->
+            </div>
         </div>
     </div>
+
+    <!-- Navegação Mobile -->
+    <nav class="mobile-nav">
+        <div class="mobile-nav-items">
+            <a href="#home" class="mobile-nav-item active" onclick="showSection('home')">
+                <i class="fas fa-home"></i>
+                <span>Início</span>
+            </a>
+            <a href="#dragons" class="mobile-nav-item" onclick="showSection('dragons')">
+                <i class="fas fa-dragon"></i>
+                <span>Dragões</span>
+            </a>
+            <a href="#movies" class="mobile-nav-item" onclick="showSection('movies')">
+                <i class="fas fa-film"></i>
+                <span>Filmes</span>
+            </a>
+            <a href="#trailers" class="mobile-nav-item" onclick="showSection('trailers')">
+                <i class="fas fa-play-circle"></i>
+                <span>Trailers</span>
+            </a>
+            <a href="#characters" class="mobile-nav-item" onclick="showSection('characters')">
+                <i class="fas fa-users"></i>
+                <span>Personagens</span>
+            </a>
+            <a href="#more" class="mobile-nav-item" onclick="showMoreOptions()">
+                <i class="fas fa-ellipsis-h"></i>
+                <span>Mais</span>
+            </a>
+        </div>
+    </nav>
 
     <!-- Footer -->
     <footer>
         <div class="footer-content">
             <p class="footer-text">
-                “O céu não pertence a quem não cai, mas a quem tem coragem de abrir as asas de novo.” ❤️ <span class="heart">❤️</span>
+                “O céu não pertence a quem não cai, mas a quem tem coragem de abrir as asas de novo.” <span class="heart">❤️</span>
             </p>
             <p class="footer-text">
-                Especialmente para Debora Vezetiv <3
+                Feito para minha princesa: Debora Vezetiv
             </p>
         </div>
     </footer>
@@ -577,7 +2497,7 @@
         // Criar partículas animadas
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
+            const particleCount = 30;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
@@ -592,233 +2512,717 @@
         // Inicializar partículas
         createParticles();
 
-        // Dados dos filmes (simulação)
-        const moviesData = {
-            1: {
-                title: 'Como Treinar seu Dragão',
-                file: 'Como Treinar o Seu Dragão.mp4',
-                size: '1.49 GB',
-                duration: '1h 38min'
-            },
-            2: {
-                title: 'Como Treinar seu Dragão 2',
-                file: 'Como Treinar o Seu Dragão 2.mp4',
-                size: '820 MB',
-                duration: '1h 42min'
-            },
-            3: {
-                title: 'Como Treinar seu Dragão 3',
-                file: 'Como Treinar o Seu Dragão 3.mp4',
-                size: '1.1 GB',
-                duration: '1h 44min'
-            }
-        };
+        // Sistema de navegação por abas
+        function showSection(sectionId) {
+            // Esconder todas as seções
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
 
-        function watchMovie(movieNumber) {
-            const movie = moviesData[movieNumber];
+            // Mostrar a seção selecionada
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            // Atualizar navegação desktop
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${sectionId}`) {
+                    item.classList.add('active');
+                }
+            });
+
+            // Atualizar navegação mobile
+            const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+            mobileNavItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${sectionId}`) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        // Mostrar mais opções no mobile
+        function showMoreOptions() {
+            showNotification('Menu adicional: Criadores, Berk e Curiosidades estão disponíveis na navegação desktop!');
+        }
+
+        // Base de dados de dragões
+        const dragonsDatabase = [
+            {
+                name: "Fúria da Noite",
+                class: "Strike Class",
+                abilities: ["Sopro de Plasma", "Camuflagem", "Velocidade Supersônica"],
+                stats: {
+                    attack: "★★★★★★★",
+                    speed: "★★★★★★★",
+                    armor: "★★★★☆☆",
+                    firepower: "★★★★★★★",
+                    stealth: "★★★★★★★",
+                    intelligence: "★★★★★☆"
+                },
+                description: "O dragão mais raro e poderoso conhecido. Considerado extinto até Soluço encontrar Banguela.",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_jq__Hyr1rlDsCTN3KHcmzDWDQJ4JfDMw5g&s"
+            },
+            {
+                name: "Gronckle",
+                class: "Boulder Class",
+                abilities: ["Lança de Lava", "Resistência", "Força Bruta"],
+                stats: {
+                    attack: "★★★☆☆☆☆",
+                    speed: "★☆☆☆☆☆",
+                    armor: "★★★★★★★",
+                    firepower: "★★★☆☆☆",
+                    stealth: "★☆☆☆☆☆",
+                    intelligence: "★★☆☆☆☆"
+                },
+                description: "Pequeno mas incrivelmente resistente. Seu corpo é quase completamente feito de rocha.",
+                image: "https://preview.redd.it/i-think-we-should-talk-about-the-gronkle-today-most-least-v0-4qvbmuxx2pzd1.jpeg?width=640&crop=smart&auto=webp&s=9c5bc5153113e95cc18fec30a8eb13a2b6069fef"
+            },
+            {
+                name: "Monstrous Nightmare",
+                class: "Stoker Class",
+                abilities: ["Chamas Envoltantes", "Voo Poderoso", "Intimidação"],
+                stats: {
+                    attack: "★★★★★☆",
+                    speed: "★★★★☆☆",
+                    armor: "★★★★☆☆",
+                    firepower: "★★★★★★★",
+                    stealth: "★★☆☆☆☆",
+                    intelligence: "★★★☆☆☆"
+                },
+                description: "Conhecido por suas chamas que queimam até mesmo debaixo d'água. Extremamente territorial.",
+                image: "https://static.wikia.nocookie.net/httyd-universe/images/9/9e/Monstrous-Nightmare-nightmare-the-dragon-28083797-803-658.png/revision/latest?cb=20130506203759"
+            },
+            {
+                name: "Deadly Nadder",
+                class: "Tracker Class",
+                abilities: ["Espinhos Venenosos", "Visão Aguçada", "Velocidade"],
+                stats: {
+                    attack: "★★★☆☆☆☆",
+                    speed: "★★★★☆☆",
+                    armor: "★★☆☆☆☆",
+                    firepower: "★☆☆☆☆☆",
+                    stealth: "★★★★★★★",
+                    intelligence: "★★★★☆☆"
+                },
+                description: "Rápido e ágil, com espinhos venenosos que podem ser letais. Excelente caçador.",
+                image: "https://static.wikia.nocookie.net/dragons/images/5/5d/Deadly-nadder-_%281%29.png/revision/latest/thumbnail/width/360/height/450?cb=20100918163141"
+            },
+            {
+                name: "Hideous Zippleback",
+                class: "Mystery Class",
+                abilities: ["Gás Explosivo", "Trabalho em Equipe", "Cabeças Duplas"],
+                stats: {
+                    attack: "★★★☆☆☆☆",
+                    speed: "★★☆☆☆☆",
+                    armor: "★★★☆☆☆",
+                    firepower: "★★★☆☆☆",
+                    stealth: "★★☆☆☆☆",
+                    intelligence: "★★★☆☆☆"
+                },
+                description: "Dragão de duas cabeças que pode cuspir gás explosivo. As duas cabeças têm personalidades diferentes.",
+                image: "https://static.wikia.nocookie.net/dreamworks-dragons/images/2/2d/Hideous-Zippleback-zippleback-the-dragon-28083748-708-798.png/revision/latest?cb=20130415192456"
+            },
+            {
+                name: "Thunderdrum",
+                class: "Sharp Class",
+                abilities: ["Relâmpagos", "Voo em Tempestade", "Eletrocinese"],
+                stats: {
+                    attack: "★★★★☆☆",
+                    speed: "★★★★★☆",
+                    armor: "★★★☆☆☆",
+                    firepower: "★★★★★☆",
+                    stealth: "★★☆☆☆☆",
+                    intelligence: "★★★★☆☆"
+                },
+                description: "Pode gerar relâmpagos e trovões. Um dos dragões mais poderosos em ataques aéreos.",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1YLlq5yO42HM9f_S1v0_QFfDYckRU4Jggrg&s"
+            },
+            {
+                name: "Changewing",
+                class: "Mystery Class",
+                abilities: ["Corte de Ácido", "Expansão da Mandíbula", "Camuflagem"],
+                stats: {
+                    attack: "★★★☆☆☆☆",
+                    speed: "★★☆☆☆☆",
+                    armor: "★★☆☆☆☆",
+                    firepower: "★★☆☆☆☆",
+                    stealth: "★★★★★★★",
+                    intelligence: "★★★★☆☆"
+                },
+                description: "Pode inflar sua cabeça como um balão e disparar ácido. Mestre da camuflagem.",
+                image: "https://static.wikia.nocookie.net/comotreinarseudragao/images/6/60/Cloudjumper_HTTYD2.png"
+            },
+            {
+                name: "Rumblehorn",
+                class: "Boulder Class",
+                abilities: ["Chifre Poderoso", "Carga", "Resistência Extrema"],
+                stats: {
+                    attack: "★★★★☆☆",
+                    speed: "★★☆☆☆☆",
+                    armor: "★★★★★★★",
+                    firepower: "★☆☆☆☆☆",
+                    stealth: "★☆☆☆☆☆",
+                    intelligence: "★★☆☆☆☆"
+                },
+                description: "Dragão de batalha com um chifre poderoso. Incrivelmente forte e resistente.",
+                image: "https://static.wikia.nocookie.net/comotreinarseudragao/images/6/60/Skullcrusher_HTTYD2.png"
+            },
+            {
+                name: "Typhoomerang",
+                class: "Stoker Class",
+                abilities: ["Tornado de Fogo", "Voo Acrobático", "Ataques Giratórios"],
+                stats: {
+                    attack: "★★★★★☆",
+                    speed: "★★★★★★",
+                    armor: "★★★☆☆☆",
+                    firepower: "★★★★★★",
+                    stealth: "★★☆☆☆☆",
+                    intelligence: "★★★★☆☆"
+                },
+                description: "Pode criar tornados de fogo e voar em espirais. Um dos dragões mais ágeis.",
+                image: "https://static.wikia.nocookie.net/comotreinarseudragao/images/6/60/Typhoomerang_HTTYD2.png"
+            },
+            {
+                name: "Flightmare",
+                class: "Fear Class",
+                abilities: ["Controle Mental", "Hipnose", "Medo do Medo"],
+                stats: {
+                    attack: "★★★★★★★",
+                    speed: "★★★★★☆",
+                    armor: "★★★☆☆☆",
+                    firepower: "★★★★★☆",
+                    stealth: "★★★★★★★",
+                    intelligence: "★★★★★★★"
+                },
+                description: "O dragão alfa original. Controla outros dragões através de medo e força mental.",
+                image: "https://static.wikia.nocookie.net/comotreinarseudragao/images/6/60/Night_Fury_HTTYD2.png"
+            },
+            {
+                name: "Bewilderbeast",
+                class: "Fear Class",
+                abilities: ["Sopro de Ácido", "Controle Mental", "Tamanho Gigante"],
+                stats: {
+                    attack: "★★★★★★★",
+                    speed: "★★☆☆☆☆",
+                    armor: "★★★★★★★",
+                    firepower: "★★★★★★★",
+                    stealth: "★★★★★★★",
+                    intelligence: "★★★★★★★"
+                },
+                description: "Um dragão colossal que serve como segundo alfa. Seu sopro de ácido pode derreter qualquer coisa.",
+                image: "https://static.wikia.nocookie.net/comotreinarseudragao/images/6/60/Bewilderbeast_HTTYD2.png"
+            }
+        ];
+
+        // Função de pesquisa de dragões
+        function searchDragons() {
+            const searchTerm = document.getElementById('dragonSearch').value.toLowerCase().trim();
+            const resultsContainer = document.getElementById('dragonResults');
+            const loadingElement = document.getElementById('searchLoading');
             
-            // Criar notificação bonita
-            showNotification(`🎬 Iniciando "${movie.title}"... Prepare a pipoca! 🍿`);
-            
-            // Simular abertura do player
+            if (!searchTerm) {
+                resultsContainer.innerHTML = '<div class="no-results"><i class="fas fa-dragon"></i><p>Digite o nome de um dragão para pesquisar</p></div>';
+                return;
+            }
+
+            // Mostrar loading
+            loadingElement.classList.add('active');
+            resultsContainer.innerHTML = '';
+
+            // Simular busca na API (em um projeto real, aqui faríamos uma chamada à API)
             setTimeout(() => {
-                showInfoModal(
-                    `🎥 ${movie.title}`,
-                    `O filme está começando! Duração: ${movie.duration}<br>
-                    Aproveitem este momento especial juntos! ✨<br><br>
-                    <small>Em um ambiente real, o vídeo seria reproduzido aqui.</small>`
+                const results = dragonsDatabase.filter(dragon => 
+                    dragon.name.toLowerCase().includes(searchTerm) ||
+                    dragon.class.toLowerCase().includes(searchTerm) ||
+                    dragon.abilities.some(ability => ability.toLowerCase().includes(searchTerm))
                 );
+
+                loadingElement.classList.remove('active');
+
+                if (results.length === 0) {
+                    resultsContainer.innerHTML = '<div class="no-results"><i class="fas fa-search"></i><p>Nenhum dragão encontrado para "' + searchTerm + '"</p></div>';
+                } else {
+                    displayDragonResults(results);
+                }
             }, 1000);
         }
 
-        function downloadMovie(movieNumber) {
-            const movie = moviesData[movieNumber];
+        // Exibir resultados dos dragões
+        function displayDragonResults(dragons) {
+            const resultsContainer = document.getElementById('dragonResults');
             
-            // Criar notificação de download
-            showNotification(`⬇️ Iniciando download de "${movie.title}"...`);
-            
-            // Simular progresso do download
-            let progress = 0;
-            const downloadInterval = setInterval(() => {
-                progress += Math.random() * 15;
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(downloadInterval);
-                    
-                    showInfoModal(
-                        `✅ Download Concluído!`,
-                        `"${movie.title}" foi baixado com sucesso!<br>
-                        Tamanho: ${movie.size}<br><br>
-                        Agora vocês podem assistir offline! 🎉<br><br>
-                        <small>O arquivo foi salvo na pasta de downloads.</small>`
-                    );
-                } else {
-                    showNotification(`⬇️ Baixando "${movie.title}": ${Math.round(progress)}%`);
-                }
-            }, 500);
+            resultsContainer.innerHTML = dragons.map(dragon => `
+                <div class="dragon-card" onclick="showDragonDetails('${dragon.name}')">
+                    <div class="dragon-header">
+                        <img src="${dragon.image}" alt="${dragon.name}" class="dragon-image">
+                        <div class="dragon-name">${dragon.name}</div>
+                    </div>
+                    <div class="dragon-class">${dragon.class}</div>
+                    <div class="dragon-description">${dragon.description}</div>
+                    <div class="dragon-stats">
+                        <div class="dragon-stat">
+                            <div class="dragon-stat-label">Ataque</div>
+                            <div class="dragon-stat-value">${dragon.stats.attack}</div>
+                        </div>
+                        <div class="dragon-stat">
+                            <div class="dragon-stat-label">Velocidade</div>
+                            <div class="dragon-stat-value">${dragon.stats.speed}</div>
+                        </div>
+                        <div class="dragon-stat">
+                            <div class="dragon-stat-label">Armadura</div>
+                            <div class="dragon-stat-value">${dragon.stats.armor}</div>
+                        </div>
+                        <div class="dragon-stat">
+                            <div class="dragon-stat-label">Fogo</div>
+                            <div class="dragon-stat-value">${dragon.stats.firepower}</div>
+                        </div>
+                        <div class="dragon-stat">
+                            <div class="dragon-stat-label">Furtividade</div>
+                            <div class="dragon-stat-value">${dragon.stats.stealth}</div>
+                        </div>
+                        <div class="dragon-stat">
+                            <div class="dragon-stat-label">Inteligência</div>
+                            <div class="dragon-stat-value">${dragon.stats.intelligence}</div>
+                        </div>
+                    </div>
+                    <div class="dragon-abilities">
+                        ${dragon.abilities.map(ability => `
+                            <div class="dragon-ability">
+                                <i class="fas fa-fire"></i>
+                                <span>${ability}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
         }
 
+        // Mostrar detalhes do dragão
+        function showDragonDetails(dragonName) {
+            const dragon = dragonsDatabase.find(d => d.name === dragonName);
+            if (!dragon) return;
+
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            const modalButtons = document.getElementById('modalButtons');
+
+            modalTitle.textContent = dragon.name;
+            modalBody.innerHTML = `
+                <div style="text-align: center;">
+                    <img src="${dragon.image}" alt="${dragon.name}" style="width: 200px; height: 200px; border-radius: 50%; margin-bottom: 1rem; border: 3px solid var(--accent-color);">
+                    <h3 style="color: var(--secondary-color); margin-bottom: 1rem;">${dragon.class}</h3>
+                    <p style="line-height: 1.6; margin-bottom: 1rem;">${dragon.description}</p>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 1rem;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 0.8rem; opacity: 0.8;">Ataque</div>
+                            <div style="font-family: 'Cinzel', serif; color: var(--accent-color);">${dragon.stats.attack}</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 0.8rem; opacity: 0.8;">Velocidade</div>
+                            <div style="font-family: 'Cinzel', serif; color: var(--accent-color);">${dragon.stats.speed}</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 0.8rem; opacity: 0.8;">Armadura</div>
+                            <div style="font-family: 'Cinzel', serif; color: var(--accent-color);">${dragon.stats.armor}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modalButtons.innerHTML = `
+                <button class="modal-btn modal-btn-primary" onclick="closeModal()">
+                    <i class="fas fa-dragon"></i> Incrível!
+                </button>
+                <button class="modal-btn modal-btn-secondary" onclick="closeModal()">
+                    <i class="fas fa-times"></i> Fechar
+                </button>
+            `;
+
+            openModal();
+        }
+
+        // Abrir opções de filme
+        function openMovieOptions(movieId) {
+            const movies = {
+                1: {
+                    title: 'Como Treinar seu Dragão',
+                    streaming: {
+                        'Google Drive (Principal)': 'https://drive.google.com/file/d/1i2XHKmsyuIbXyDeE0Zrs0Azf11DbdRS3/view?usp=drivesdk',
+                        'DSV Play': 'https://dsvplay.com/d/5nv2kpgfbrte#download_now',
+                        'Streamtape': 'https://streamtape.com/v/R43rqAlGG7CdyOe/'
+                    }
+                },
+                2: {
+                    title: 'Como Treinar seu Dragão 2',
+                    streaming: {
+                        'Google Drive (Principal)': 'https://drive.google.com/file/d/1YJpaItgHdbvERH-86qftvyXTKA0VZDTc/view?usp=drivesdk'
+                    }
+                },
+                3: {
+                    title: 'Como Treinar seu Dragão 3',
+                    streaming: {
+                        'Google Drive (Principal)': 'https://drive.google.com/file/d/11ewurS3YkKmqVmMniJmA-0ZPt-epNeA4/view?usp=drivesdk',
+                        'DSV Play': 'https://dsvplay.com/d/5w5al4npft6b'
+                    }
+                }
+            };
+
+            const movie = movies[movieId];
+            if (!movie) return;
+
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            const modalButtons = document.getElementById('modalButtons');
+
+            modalTitle.textContent = `Assistir: ${movie.title}`;
+            modalBody.innerHTML = `<p>Escolha sua plataforma de streaming preferida:</p>`;
+            
+            modalButtons.innerHTML = '';
+            for (const [name, url] of Object.entries(movie.streaming)) {
+                const button = document.createElement('button');
+                button.className = 'modal-btn modal-btn-primary';
+                button.innerHTML = `<i class="fas fa-play"></i> ${name}`;
+                button.onclick = () => {
+                    window.open(url, '_blank');
+                    closeModal();
+                };
+                modalButtons.appendChild(button);
+            }
+
+            openModal();
+        }
+
+        // Abrir opções de download
+        function openDownloadOptions(movieId) {
+            const movies = {
+                1: {
+                    title: 'Como Treinar seu Dragão',
+                    download: {
+                        'Google Drive (Principal)': 'https://drive.google.com/file/d/1i2XHKmsyuIbXyDeE0Zrs0Azf11DbdRS3/view?usp=drivesdk',
+                        'DSV Play': 'https://dsvplay.com/d/5nv2kpgfbrte#download_now',
+                        'StreamHG': 'https://asnwish.com/download/sentp7jkoi6c_h'
+                    }
+                },
+                2: {
+                    title: 'Como Treinar seu Dragão 2',
+                    download: {
+                        'Google Drive (Principal)': 'https://mega.nz/folder/FxZ2VQrY#L2K9tLq6m0X8qO3sU5tRx',
+                        'EarnVids': 'https://dinisglows.com/download/sentp7jkoi6c_h'
+                    }
+                },
+                3: {
+                    title: 'Como Treinar seu Dragão 3',
+                    download: {
+                        'Google Drive (Principal)': 'https://mega.nz/folder/GyZ2VQrY#M3L0tLq7n1Y9rP4tV6uSy',
+                        'DSV Play': 'https://dsvplay.com/d/5w5al4npft6b'
+                    }
+                }
+            };
+
+            const movie = movies[movieId];
+            if (!movie) return;
+
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            const modalButtons = document.getElementById('modalButtons');
+
+            modalTitle.textContent = `Baixar: ${movie.title}`;
+            modalBody.innerHTML = `<p>Escolha sua fonte de download preferida:</p>`;
+            
+            modalButtons.innerHTML = '';
+            for (const [name, url] of Object.entries(movie.download)) {
+                const button = document.createElement('button');
+                button.className = 'modal-btn modal-btn-secondary';
+                button.innerHTML = `<i class="fas fa-download"></i> ${name}`;
+                button.onclick = () => {
+                    window.open(url, '_blank');
+                    closeModal();
+                };
+                modalButtons.appendChild(button);
+            }
+
+            openModal();
+        }
+
+        // Reproduzir trailer
+        function playTrailer(trailerId) {
+            const trailers = {
+                1: 'https://www.youtube.com/watch?v=RA0nWjiY4_0',
+                2: 'https://www.youtube.com/watch?v=mxyOFw8SeSM',
+                3: 'https://www.youtube.com/watch?v=3u8i3_Jbg6o'
+            };
+
+            const trailerUrl = trailers[trailerId];
+            if (trailerUrl) {
+                window.open(trailerUrl, '_blank');
+            }
+        }
+
+        // Mostrar informações do personagem
+        function showCharacterInfo(characterId) {
+            const characters = {
+                hiccup: {
+                    name: 'Soluço',
+                    role: 'O Treinador de Dragões',
+                    description: 'Soluço Haddock III é o herdeiro de Berk. Antes visto como fraco, prova seu valor ao descobrir que dragões não são inimigos. Com inteligência, coragem e empatia, transforma a história viking e se torna o maior herói de sua geração.',
+                    dragon: 'Banguela (Fúria da Noite)'
+                },
+                toothless: {
+                    name: 'Banguela',
+                    role: 'Fúria da Noite',
+                    description: 'Banguela é um Fúria da Noite, uma das espécies mais raras e inteligentes de todas. Silencioso, rápido e preciso, cria um laço inquebrável com Soluço. Sua lealdade, estratégia e poder o tornam o símbolo da união entre homens e dragões.',
+                    rider: 'Soluço'
+                },
+                astrid: {
+                    name: 'Astrid',
+                    role: 'Guerreira Viking',
+                    description: 'Astrid Hofferson é uma das guerreiras mais habilidosas de Berk. Determinada, disciplinada e extremamente corajosa, apoia Soluço desde o início. Sua força, foco e confiança fazem dela uma líder nata e peça essencial na paz entre dragões e vikings.',
+                    dragon: 'Tempestade (Stormfly)'
+                },
+                snotlout: {
+                    name: 'Melequento Jorgenson',
+                    role: 'O Competidor',
+                    description: 'Melequento Jorgenson é dono de uma personalidade explosiva e competitiva. Apesar do temperamento difícil, é leal ao grupo. Seu dragão, Hookfang, um Fúria Brava, reflete sua ousadia, sendo poderoso, imponente e imprevisível.',
+                    dragon: 'Dente de Anzol (Monstrous Nightmare)'
+                },
+                fishlegs: {
+                    name: 'Perna-de-Peixe',
+                    role: 'O Sábio',
+                    description: 'Perna-de-Peixe Ingerman é o mais estudioso da turma. Especialista em dragões, conhece cada espécie, comportamento e fraqueza. Embora não seja o mais corajoso em combate, compensa com inteligência, análises precisas e apoio constante aos amigos.',
+                    dragon: 'Batatão (Gronckle)'
+                },
+                ruffnut: {
+                    name: 'Ruffnut Thorston',
+                    role: 'Cabeça Quente (Irmã)',
+                    description: 'Ruffnut é ousada, sarcástica e adora o caos. Gosta de provocar os outros, principalmente o próprio irmão. Tem personalidade forte, humor ácido e zero paciência. Mesmo sendo indisciplinada, é corajosa e nunca abandona o grupo.',
+                    dragon: 'Vômito (Zippleback)'
+                },
+                tuffnut: {
+                    name: 'Tuffnut Thorston',
+                    role: 'Cabeça Dura (Irmão)',
+                    description: 'Tuffnut é caótico, dramático e vive criando teorias estranhas. Age sem pensar, adora confusão e leva tudo para o exagero. Apesar de esquisito e irresponsável, é leal e sempre entra de cabeça nas aventuras.',
+                    dragon: 'Arroto (Zippleback)'
+                },
+                stoick: {
+                    name: 'Stoick',
+                    role: 'O Chefe',
+                    description: 'Stoick, o vasto é o chefe de Berk e pai de Soluço. Inicialmente rígido e desconfiado, ele aprende a aceitar os dragões.',
+                    dragon: 'Skullcrusher (Rumblehorn)'
+                }
+            };
+
+            const character = characters[characterId];
+            if (!character) return;
+
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            const modalButtons = document.getElementById('modalButtons');
+
+            modalTitle.textContent = character.name;
+            modalBody.innerHTML = `
+                <div style="text-align: center;">
+                    <h3 style="color: var(--secondary-color); margin-bottom: 1rem;">${character.role}</h3>
+                    <p style="line-height: 1.6; margin-bottom: 1rem;">${character.description}</p>
+                    ${character.dragon ? `<p style="color: var(--accent-color);"><strong>Dragão:</strong> ${character.dragon}</p>` : ''}
+                    ${character.rider ? `<p style="color: var(--accent-color);"><strong>Cavaleiro:</strong> ${character.rider}</p>` : ''}
+                </div>
+            `;
+            
+            modalButtons.innerHTML = `
+                <button class="modal-btn modal-btn-primary" onclick="closeModal()">
+                    <i class="fas fa-heart"></i> Adoro este personagem!
+                </button>
+                <button class="modal-btn modal-btn-secondary" onclick="closeModal()">
+                    <i class="fas fa-times"></i> Fechar
+                </button>
+            `;
+
+            openModal();
+        }
+
+        // Mostrar informações do local
+        function showLocationInfo(locationId) {
+            const locations = {
+                vila: {
+                    name: 'Vila de Berk',
+                    description: 'O coração da ilha onde os vikings vivem. Com casas construídas sobre pilares para proteção contra ataques de dragões.'
+                },
+                ninho: {
+                    name: 'Ninho dos Dragões',
+                    description: 'Um lugar sagrado onde os dragões descansam e cuidam de seus filhotes. Protegido por alfa e rainha.'
+                },
+                treinamento: {
+                    name: 'Campo de Treinamento',
+                    description: 'Onde os jovens vikings aprendem a lutar e, eventualmente, a treinar dragões.'
+                },
+                vigia: {
+                    name: 'Posto de Vigia',
+                    description: 'Ponto estratégico para observar o horizonte em busca de navios inimigos ou cardumes de dragões.'
+                },
+                docas: {
+                    name: 'Docas',
+                    description: 'Onde os navios vikings são construídos e reparados. Essencial para expedições e comércio.'
+                },
+                ferreiro: {
+                    name: 'Ferreiro',
+                    description: 'Local onde armas e ferramentas são forjadas. O calor do fogo mantém todos aquecidos nos dias frios.'
+                },
+                grande_salao: {
+                    name: 'Grande Salão',
+                    description: 'Centro da vida social de Berk. Festas, reuniões e celebrações acontecem aqui.'
+                },
+                arena: {
+                    name: 'Arena de Dragões',
+                    description: 'Onde os dragões competem e os cavaleiros demonstram suas habilidades. Transformada de local de lutas para palco de amizade.'
+                },
+                estabulos: {
+                    name: 'Estábulos de Dragões',
+                    description: 'Local seguro onde os dragões descansam e são cuidados. Cada cavaleiro tem seu próprio espaço para seu dragão.'
+                },
+                mercado: {
+                    name: 'Mercado Viking',
+                    description: 'Onde os vikings comercializam peixes, armas e suprimentos. Um lugar movimentado cheio de história e cultura.'
+                }
+            };
+
+            const location = locations[locationId];
+            if (!location) return;
+
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            const modalButtons = document.getElementById('modalButtons');
+
+            modalTitle.textContent = location.name;
+            modalBody.innerHTML = `
+                <div style="text-align: center;">
+                    <p style="line-height: 1.6;">${location.description}</p>
+                </div>
+            `;
+            
+            modalButtons.innerHTML = `
+                <button class="modal-btn modal-btn-primary" onclick="closeModal()">
+                    <i class="fas fa-map-marked-alt"></i> Explorar mais
+                </button>
+                <button class="modal-btn modal-btn-secondary" onclick="closeModal()">
+                    <i class="fas fa-times"></i> Fechar
+                </button>
+            `;
+
+            openModal();
+        }
+
+        // Funções do modal
+        function openModal() {
+            const modal = document.getElementById('optionsModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('optionsModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Sistema de notificações
         function showNotification(message) {
-            // Remover notificação anterior se existir
+            // Remover notificação existente se houver
             const existingNotification = document.querySelector('.notification');
             if (existingNotification) {
                 existingNotification.remove();
             }
 
-            // Criar elemento de notificação
+            // Criar nova notificação
             const notification = document.createElement('div');
             notification.className = 'notification';
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: linear-gradient(135deg, #ff6b35, #ffd700);
-                color: white;
-                padding: 1rem 1.5rem;
-                border-radius: 10px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-                z-index: 2000;
-                animation: slideInRight 0.5s ease;
-                max-width: 300px;
-                font-size: 0.95rem;
-            `;
-            notification.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fas fa-dragon"></i>
-                    <span>${message}</span>
-                </div>
-            `;
-            
+            notification.textContent = message;
             document.body.appendChild(notification);
-            
-            // Auto-remover após 3 segundos (exceto para downloads em progresso)
-            if (!message.includes('%')) {
+
+            // Remover após 3 segundos
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.5s ease';
                 setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.style.animation = 'slideOutRight 0.5s ease';
-                        setTimeout(() => {
-                            if (notification.parentNode) {
-                                document.body.removeChild(notification);
-                            }
-                        }, 500);
-                    }
-                }, 3000);
-            }
+                    notification.remove();
+                }, 500);
+            }, 3000);
         }
 
-        function showInfoModal(title, text) {
-            const modal = document.getElementById('infoModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalText = document.getElementById('modalText');
-            
-            modalTitle.innerHTML = title;
-            modalText.innerHTML = text;
-            modal.classList.add('active');
-        }
+        // Adicionar evento de Enter para pesquisa
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('dragonSearch');
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchDragons();
+                }
+            });
 
-        function closeInfoModal() {
-            const modal = document.getElementById('infoModal');
-            modal.classList.remove('active');
-        }
-
-        // Adicionar animações CSS
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideInRight {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-            
-            @keyframes slideOutRight {
-                from {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
+            // Carregar alguns dragões populares ao iniciar
+            setTimeout(() => {
+                const popularDragons = dragonsDatabase.slice(0, 6);
+                displayDragonResults(popularDragons);
+            }, 500);
+        });
 
         // Fechar modal ao clicar fora
-        document.getElementById('infoModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeInfoModal();
+        window.onclick = function(event) {
+            const modal = document.getElementById('optionsModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Fechar modal com ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
             }
         });
 
-        // Efeito de hover nos cards com mouse move
-        document.querySelectorAll('.movie-card').forEach(card => {
-            card.addEventListener('mousemove', function(e) {
-                const rect = this.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-                
-                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-            });
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mostrar seção inicial
+            showSection('home');
             
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = '';
+            // Adicionar efeitos de hover aos cards
+            const cards = document.querySelectorAll('.movie-card, .character-card, .info-card, .stat-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Adicionar animação de entrada aos elementos
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observar elementos para animação
+            const animatedElements = document.querySelectorAll('.movie-card, .character-card, .info-card, .timeline-item');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
             });
         });
-
-        // Adicionar efeito de brilho ao clicar nos botões
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.cssText = `
-                    position: absolute;
-                    width: ${size}px;
-                    height: ${size}px;
-                    border-radius: 50%;
-                    background: rgba(255, 255, 255, 0.5);
-                    left: ${x}px;
-                    top: ${y}px;
-                    pointer-events: none;
-                    transform: scale(0);
-                    animation: ripple 0.6s ease-out;
-                `;
-                
-                this.style.position = 'relative';
-                this.style.overflow = 'hidden';
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-            });
-        });
-
-        // Adicionar animação de ripple
-        const rippleStyle = document.createElement('style');
-        rippleStyle.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(rippleStyle);
     </script>
 </body>
 </html>
